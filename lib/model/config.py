@@ -28,6 +28,8 @@ __C.RCNN_MIX = False      # For RCNN mix-training, with rpn training
 __C.MIX_TEST = True       # Just for test code, # OK test complete
 __C.DEBUG = True          # Debug code, tprint() work when True
 
+
+__C.TRAIN.MODEL_WEIGHTS = "data/imagenet_weights/res101.pth"
 # Initial learning rate
 __C.TRAIN.LEARNING_RATE = 0.001
 

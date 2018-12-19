@@ -9,7 +9,7 @@ from __future__ import print_function
 
 import tensorboardX as tb
 
-from model.config import cfg
+from model.config import cfg, tmp_lam
 import roi_data_layer.roidb as rdl_roidb
 from roi_data_layer.layer import RoIDataLayer
 import utils.timer
@@ -248,6 +248,8 @@ class SolverWrapper(object):
         scale_lr(self.optimizer, cfg.TRAIN.GAMMA)
         next_stepsize = stepsizes.pop()
 
+      # tmp_lam update:
+      tmp_lam = np.random.beta(0.1,0.1)
       utils.timer.timer.tic()
       # Get training data, one batch at a time
       blobs = self.data_layer.forward()

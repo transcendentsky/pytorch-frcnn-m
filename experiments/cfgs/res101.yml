@@ -1,4 +1,6 @@
 EXP_DIR: res101
+DEBUG: False
+MIX_TEST: False
 TRAIN:
   HAS_RPN: True
   IMS_PER_BATCH: 1

@@ -140,5 +140,5 @@ if __name__ == '__main__':
     raise NotImplementedError
     
   train_net(net, imdb, roidb, valroidb, output_dir, tb_dir,
-            pretrained_model=args.weight,
+            pretrained_model=cfg.TRAIN.MODEL_WEIGHTS,
             max_iters=args.max_iters)
