@@ -90,6 +90,7 @@ def get_minibatch(roidb, num_classes):
       print(roidb[0]['gt_classes'][gt_inds])
     gt_boxes[:, 4] = roidb[0]['gt_classes'][gt_inds]
     blobs['gt_boxes'] = gt_boxes
+    blobs['gt_boxes2'] = None
     blobs['im_info'] = np.array(
       [im_blob.shape[1], im_blob.shape[2], im_scales[0]],
       dtype=np.float32)

@@ -249,7 +249,8 @@ class SolverWrapper(object):
         next_stepsize = stepsizes.pop()
 
       # tmp_lam update:
-      tmp_lam = np.random.beta(0.1,0.1)
+      tl = np.random.beta(0.1, 0.1)
+      tmp_lam = tl if tl > 0.5 else 1 - tl
       utils.timer.timer.tic()
       # Get training data, one batch at a time
       blobs = self.data_layer.forward()
@@ -273,7 +274,7 @@ class SolverWrapper(object):
       utils.timer.timer.toc()
 
       # Display training information
-      if iter % (cfg.TRAIN.DISPLAY) == 0:
+      if (iter < 100 and iter % (cfg.TRAIN.DISPLAY) == 0) or (iter % 5000 == 0) :
         print('iter: %d / %d, total loss: %.6f\n >>> rpn_loss_cls: %.6f\n '
               '>>> rpn_loss_box: %.6f\n >>> loss_cls: %.6f\n >>> loss_box: %.6f\n >>> lr: %f' % \
               (iter, max_iters, total_loss, rpn_loss_cls, rpn_loss_box, loss_cls, loss_box, lr))
